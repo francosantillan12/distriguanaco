@@ -1,10 +1,10 @@
-// src/components/CartWidget.jsx
-function CartWidget() {
+const CartWidget = ({ cantidad }) => {
   return (
-    <button style={{ padding: "5px 10px", border: "2px solid green", borderRadius: "5px" }}>
+    <div className="cart-widget">
       🛒
-    </button>
+      {cantidad > 0 && <span className="contador-carrito">{cantidad}</span>}
+    </div>
   );
-}
+};
 
 export default CartWidget;

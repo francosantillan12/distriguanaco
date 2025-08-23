@@ -1,7 +1,6 @@
-// src/components/NavBar.jsx
 import CartWidget from "./CartWidget";
 
-const NavBar = () => {
+const NavBar = ({ cantidad }) => {
   return (
     <nav className="navbar">
       <span className="logo">DistriGuanaco</span>
@@ -10,10 +9,9 @@ const NavBar = () => {
         <a href="#">Semillas</a>
         <a href="#">Harinas</a>
       </div>
-      <div className="cart-widget">🛒</div>
+      <CartWidget cantidad={cantidad} />
     </nav>
   );
 };
 
 export default NavBar;
-

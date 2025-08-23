@@ -43,3 +43,15 @@ h2 {
   font-size: 2rem;
   color:rgba(250, 0, 0, 0.87);
 }
+
+.contador-carrito {
+  position: relative;
+  top: -10px;
+  left: -5px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

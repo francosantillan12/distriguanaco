@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import NavBar from './components/NavBar';
+import NavBarContainer from './components/NavbarContainer';
 import ItemListContainer from './components/ItemListContainer';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <NavBar cantidad={cantidadEnCarrito} />
+      <NavBarContainer cantidad={cantidadEnCarrito} />
       <ItemListContainer mensaje="Bienvenidos a DistriGuanaco" />
     </>
   );

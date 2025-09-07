@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import CartWidget from "./CartWidget";
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 const NavBar = ({ cantidad, categories }) => {
   return (
@@ -21,8 +21,10 @@ const NavBar = ({ cantidad, categories }) => {
         <Navbar.Collapse id="menu-principal" className="order-md-1">
           <Nav className="linksCustom">
             <NavDropdown title="Categorias" id="basic-nav-dropdown">
-              {categories.map(category => (
-                <NavDropdown.Item href="#action/3.1">{category}</NavDropdown.Item>
+              {categories.map((category) => (
+                <NavDropdown.Item key={category} href="#">
+                  {category}
+                </NavDropdown.Item>
               ))}
             </NavDropdown>
           </Nav>
@@ -33,4 +35,5 @@ const NavBar = ({ cantidad, categories }) => {
 };
 
 export default NavBar;
+
 

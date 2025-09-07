@@ -1,22 +1,21 @@
+// src/components/ItemListContainer.jsx
 import { useState, useEffect } from "react";
-import ItemList from "./ItemList"; 
+import ItemList from "./ItemList";
 
-function ItemListContainer () {
+function ItemListContainer({ mensaje = "" }) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products') // pedimos los productos a la API
-      .then(res => res.json())              // parseamos la respuesta
-      .then(data => {                       // "data" es el objeto completo
-        console.log(data);                  // mirá en consola cómo viene
-        setItems(data.products);            // guardamos el array en el state
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setItems(data.products);
       })
-      .catch(error => console.error("Error al traer productos:", error));
+      .catch((error) => console.error("Error al traer productos:", error));
   }, []);
 
-  return (
-    <ItemList items={items} />
-  )
-};
+  return <ItemList items={items} mensaje={mensaje} />;
+}
 
 export default ItemListContainer;

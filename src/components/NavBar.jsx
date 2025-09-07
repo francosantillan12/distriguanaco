@@ -3,8 +3,9 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import CartWidget from "./CartWidget";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const NavBar = ({ cantidad }) => {
+const NavBar = ({ cantidad, categories }) => {
   return (
     <Navbar bg="dark" data-bs-theme="dark" expand="md" className="navbarCustom">
       <Container fluid>
@@ -19,9 +20,11 @@ const NavBar = ({ cantidad }) => {
         {/* Links que se colapsan */}
         <Navbar.Collapse id="menu-principal" className="order-md-1">
           <Nav className="linksCustom">
-            <Nav.Link href="#">Frutos Secos</Nav.Link>
-            <Nav.Link href="#">Semillas</Nav.Link>
-            <Nav.Link href="#">Harinas</Nav.Link>
+            <NavDropdown title="Categorias" id="basic-nav-dropdown">
+              {categories.map(category => (
+                <NavDropdown.Item href="#action/3.1">{category}</NavDropdown.Item>
+              ))}
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -30,5 +33,4 @@ const NavBar = ({ cantidad }) => {
 };
 
 export default NavBar;
-
 

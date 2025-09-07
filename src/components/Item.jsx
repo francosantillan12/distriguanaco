@@ -9,11 +9,11 @@ export default function Item({ item }) {
         <Card.Img
           variant="top"
           alt={item.nombre}
-          src="https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Begrippenlijst.svg"
+          src={item.thumbnail}//para traer las imagenes de los productos
         />
         <Card.Body>
-          <Card.Title>{item.nombre}</Card.Title>
-          <Card.Text className="mb-1">Categoría: {item.categoria}</Card.Text>
+          <Card.Title>{item.title}</Card.Title>
+          <Card.Text className="mb-1">Categoría: {item.category}</Card.Text>
           <Card.Text className="mb-1">Stock: {item.stock}</Card.Text>
           <Card.Text className="fw-bold">Precio: ${item.precio}</Card.Text>
           <Button variant="primary">Ver más</Button>

@@ -1,19 +1,18 @@
-import Container from "react-bootstrap/Container";
-import Row  from "react-bootstrap/Row";
-import Item from "./Item";
+// src/components/ItemListContainer.jsx
+import { useState, useEffect } from "react";
+import ItemList from "./ItemList";
 
-function ItemList({ items = [], mensaje = "" }) { // 👈 ahora recibimos 'mensaje'
-  return (
-    <Container fluid className="item-list-container py-3">
-      <h2 className="mb-3">{mensaje}</h2>
+function ItemListContainer({ mensaje = "" }) {
+  const [items, setItems] = useState([]);
 
-      {items.length === 0 && <p className="text-body m-0">Cargando productos...</p>}
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => setItems(data.products))
+      .catch((error) => console.error("Error al traer productos:", error));
+  }, []);
 
-      <Row className="g-4">
-        {items.map(item => <Item item={item} key={item.id}/> )}
-      </Row>
-    </Container>
-  );
+  return <ItemList items={items} mensaje={mensaje} />;
 }
 
-export default ItemList; // 👈 export default presente
+export default ItemListContainer;

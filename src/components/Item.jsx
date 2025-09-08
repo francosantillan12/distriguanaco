@@ -2,10 +2,11 @@
 import Button from "react-bootstrap/Button"; 
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import styles from "../styles/Item.module.css"
 
 export default function Item({ item }) {
   return (
-    <Col xs={12} sm={6} md={4} lg={3}>
+    <Col xs={12} sm={6} md={4} lg={3} className={styles.producto}>
       <Card className="h-100">
         <Card.Img
           variant="top"
@@ -17,7 +18,8 @@ export default function Item({ item }) {
           <Card.Text className="mb-1">Categoría: {item.category}</Card.Text>
           <Card.Text className="mb-1">Stock: {item.stock}</Card.Text>
           <Card.Text className="fw-bold">Precio: ${item.price}</Card.Text> {/* <- antes: item.precio */}
-          <Button variant="primary">Ver más</Button>
+          <Button  variant="primary">Ver más</Button>
+          <Button  variant="primary">Agregar al carrito</Button>
         </Card.Body>
       </Card>
     </Col>

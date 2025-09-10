@@ -4,12 +4,16 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import CartWidget from "./CartWidget";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { NavLink } from "react-router-dom";  // 👈 Importamos NavLink del Router
 
 const NavBar = ({ cantidad, categories }) => {
   return (
-    <Navbar bg="dark" data-bs-theme="dark" expand="md" className="navbarCustom">
+    <Navbar bg="dark" data-bs-theme="dark" expand="md" className="navbarCustom" fixed="top">
       <Container fluid>
-        <Navbar.Brand className="logoCustom">DistriGuanaco</Navbar.Brand>
+        {/* 👇 Logo ahora es un enlace al Home */}
+        <Navbar.Brand className="logoCustom">
+          <NavLink to="/" className="brandLink">DistriGuanaco</NavLink>
+        </Navbar.Brand>
 
         {/* Carrito SIEMPRE visible + botón hamburguesa a la derecha */}
         <div className="d-flex align-items-center ms-auto order-md-2">
@@ -20,9 +24,19 @@ const NavBar = ({ cantidad, categories }) => {
         {/* Links que se colapsan */}
         <Navbar.Collapse id="menu-principal" className="order-md-1">
           <Nav className="linksCustom">
-            <NavDropdown title="Categorias" id="basic-nav-dropdown">
+            <NavDropdown title="Categorías" id="basic-nav-dropdown">
+              {/* 👇 Ítem extra para volver al listado completo */}
+              <NavDropdown.Item as={NavLink} to="/">
+                Todos
+              </NavDropdown.Item>
+
+              {/* 👇 Cada categoría va a /categoria/:categoriaId */}
               {categories.map((category) => (
-                <NavDropdown.Item key={category} href="#">
+                <NavDropdown.Item
+                  key={category}
+                  as={NavLink}
+                  to={`/categoria/${category}`}
+                >
                   {category}
                 </NavDropdown.Item>
               ))}
@@ -35,5 +49,6 @@ const NavBar = ({ cantidad, categories }) => {
 };
 
 export default NavBar;
+
 
 

@@ -1,4 +1,4 @@
-const CartWidget = ({ cantidad }) => {
+const CartWidget = ({cantidad}) => {
   return (
     <div className="cart-widget">
       🛒

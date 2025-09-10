@@ -1,8 +1,10 @@
-:root{
-  --color-marca: rgb(246,250,0);
-  --bs-body-bg: #ffffff;     /* fondo blanco */
-  --bs-body-color: #212529;  /* texto oscuro por defecto Bootstrap */
-
+/* =========================
+   VARIABLES DE COLOR Y FUENTE
+   ========================= */
+:root {
+  --color-marca: rgb(246, 250, 0);
+  --bs-body-bg: #00000069;
+  --bs-body-color: #212529;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -10,70 +12,132 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --bs-warning: var(--color-marca);
+  --bs-warning-rgb: 246, 250, 0;
+  --bs-warning-text-emphasis: #3a3a00;
+  --bs-warning-bg-subtle: rgba(246, 250, 0, 0.2);
+  --bs-warning-border-subtle: rgba(246, 250, 0, 0.4);
 }
 
-body{
-  margin:0;
-  min-width:320px;
-  min-height:100vh;
+/* =========================
+   RESETEO BÁSICO
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   background-color: var(--bs-body-bg);
   color: var(--bs-body-color);
+  min-height: 100vh;
+  padding-top: 70px; /* ajustá según la altura real de tu navbar */
 }
 
-/* utilitaria de marca (usala donde quieras) */
-.tinta-amarilla{ color: var(--color-marca); }
-
-/* enlaces base */
-a{ font-weight:500; text-decoration:none; color:#646cff; }
-a:hover{ color:#535bf2; text-decoration:underline; }
-
-/* ===== Estilos de tus componentes (antes estaban en App.css) ===== */
-
-/* ✅ Nombres propios, no chocan con Bootstrap */
-.navbarCustom{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background-color:#030303;
-  padding:1rem 2rem;
+.navbarCustom {
+  z-index: 1030; /* encima del contenido (Bootstrap usa ~1030 para navbars) */
 }
-.logoCustom{
-  font-size:1.5rem;
-  font-weight:bold;
-  color: #FFD700; /* Amarillo estilo dorado */
-
-}
-.linksCustom a{
-  margin:0 1rem;
-  color:#ffffff;
-  font-weight:500;
-}
-
-
-
-.cart-widget{ font-size:1.5rem; cursor:pointer; }
-
-h2{ margin:2rem; font-size:2rem; }
-
-/* Contenedor de la lista */
-.item-list-container{ padding:2rem; }
-/* solo centramos el título si querés */
-.item-list-container h2{ text-align:center; }
-
-/* globito del carrito */
-.contador-carrito{
-  position:relative;
-  top:-10px;
-  left:-5px;
-  background-color: #FFD700;
-  color:#000;
-  border-radius:50%;
-  padding:0.2rem 0.5rem;
-  font-size:0.8rem;
-  font-weight:bold;
+/* =========================
+   ENLACES
+   ========================= */
+a {
+  font-weight: 500;
+  text-decoration: none;
+  color: rgb(246, 250, 0);
 }
 
 .mb-3{
-  background-color: #FFD700;
-  
+  background-color: rgb(246, 250, 0);
+  text-align: center;
+}
+
+/* =========================
+   BOTONES PERSONALIZADOS
+   ========================= */
+.btn-marca {
+  background-color: var(--color-marca);
+  border-color: var(--color-marca);
+  color: #000; /* contraste */
+  font-weight: bold;
+}
+
+.btn-marca:hover {
+  background-color: #e0dc00; /* amarillo más oscuro */
+  border-color: #e0dc00;
+  color: #000;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+   
+.navbarCustom {
+  background-color: #212529 !important; /* oscuro */
+  padding: 0.5rem 1rem;
+}
+
+.logoCustom {
+  color: var(--color-marca);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.linksCustom a {
+  margin: 0 0.5rem;
+  color: #fff !important;
+}
+
+.linksCustom a:hover {
+  color: var(--color-marca) !important;
+}
+
+/* =========================
+   OTROS DETALLES
+   ========================= */
+.cart-widget {
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  position: relative;
+  color: #fff;          /* ícono en blanco sobre navbar oscura */
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: var(--color-marca);
+  color: #000;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+
+/* Globito del contador */
+.contador-carrito {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+
+  background: var(--color-marca);  /* amarillo de marca */
+  color: #000;                     /* número en negro para contraste */
+
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+
+  /* borde/halo para que se lea sobre fondo oscuro */
+  box-shadow: 0 0 0 2px #212529;   /* igual al bg de tu navbar */
+  z-index: 2;                      /* por si quedaba detrás */
 }

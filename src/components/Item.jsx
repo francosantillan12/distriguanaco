@@ -1,8 +1,9 @@
 // src/components/Item.jsx
-import Button from "react-bootstrap/Button"; 
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import styles from "../styles/Item.module.css"
+import { Link } from "react-router-dom";
+import styles from "../styles/Item.module.css";
 
 export default function Item({ item }) {
   return (
@@ -10,19 +11,30 @@ export default function Item({ item }) {
       <Card className="h-100">
         <Card.Img
           variant="top"
-          alt={item.title}          // <- antes: item.nombre
-          src={item.thumbnail}
+          alt={item.title}             // ✅ DummyJSON: title
+          src={item.thumbnail}         // ✅ DummyJSON: thumbnail (o images[0])
         />
-        <Card.Body>
+        <Card.Body className="d-flex flex-column">
           <Card.Title>{item.title}</Card.Title>
           <Card.Text className="mb-1">Categoría: {item.category}</Card.Text>
           <Card.Text className="mb-1">Stock: {item.stock}</Card.Text>
-          <Card.Text className="fw-bold">Precio: ${item.price}</Card.Text> {/* <- antes: item.precio */}
-          <Button  variant="primary">Ver más</Button>
-          <Button  variant="primary">Agregar al carrito</Button>
+          <Card.Text className="fw-bold">Precio: ${item.price}</Card.Text>
+
+          {/* 👇 Acciones */}
+          <div className="mt-auto d-flex gap-2">
+            <Button as={Link} to={`/detalle/${item.id}`} className="btn-marca">
+              Ver más
+            </Button>
+
+            <Button className="btn-marca">   {/* 👈 fondo amarillo */}
+              Agregar al carrito
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </Col>
   );
 }
+
+
 

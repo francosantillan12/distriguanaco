@@ -35,9 +35,6 @@ body {
   padding-top: 70px; /* ajustá según la altura real de tu navbar */
 }
 
-.navbarCustom {
-  z-index: 1030; /* encima del contenido (Bootstrap usa ~1030 para navbars) */
-}
 /* =========================
    ENLACES
    ========================= */
@@ -68,76 +65,4 @@ a {
   color: #000;
 }
 
-/* =========================
-   NAVBAR
-   ========================= */
-   
-.navbarCustom {
-  background-color: #212529 !important; /* oscuro */
-  padding: 0.5rem 1rem;
-}
 
-.logoCustom {
-  color: var(--color-marca);
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
-.linksCustom a {
-  margin: 0 0.5rem;
-  color: #fff !important;
-}
-
-.linksCustom a:hover {
-  color: var(--color-marca) !important;
-}
-
-/* =========================
-   OTROS DETALLES
-   ========================= */
-.cart-widget {
-  font-size: 1.3rem;
-  margin-left: 1rem;
-  position: relative;
-  color: #fff;          /* ícono en blanco sobre navbar oscura */
-}
-
-.cart-count {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  background-color: var(--color-marca);
-  color: #000;
-  border-radius: 50%;
-  padding: 2px 6px;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-
-
-/* Globito del contador */
-.contador-carrito {
-  position: absolute;
-  top: -8px;
-  right: -12px;
-
-  background: var(--color-marca);  /* amarillo de marca */
-  color: #000;                     /* número en negro para contraste */
-
-  border-radius: 999px;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 6px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1;
-
-  /* borde/halo para que se lea sobre fondo oscuro */
-  box-shadow: 0 0 0 2px #212529;   /* igual al bg de tu navbar */
-  z-index: 2;                      /* por si quedaba detrás */
-}

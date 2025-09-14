@@ -1,0 +1,37 @@
+
+.titulo{
+  background-color: rgb(246, 250, 0);
+  text-align: center;
+}
+/* =========================
+   CARD DE PRODUCTO
+   ========================= */
+.cardProducto {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cardProducto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Imagen del producto */
+.cardImg {
+  object-fit: cover;
+  height: 200px; /* ajusta según lo que necesites */
+}
+
+/* Título */
+.cardTitle {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+
+/* Texto de stock y categoría */
+.cardText {
+  font-size: 0.9rem;
+  color: #555;
+}

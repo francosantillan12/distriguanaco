@@ -1,4 +1,4 @@
-// src/components/ItemList.jsx
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Item from "./Item";
@@ -18,3 +18,5 @@ function ItemList({ items = [], mensaje = "" }) {
 }
 
 export default ItemList;
+
+

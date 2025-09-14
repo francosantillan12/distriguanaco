@@ -1,0 +1,36 @@
+/* =========================
+   OTROS DETALLES
+   ========================= */
+.cartWidget {
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  position: relative;
+  color: #fff; /* ícono en blanco sobre navbar oscura */
+}
+
+/* Globito del contador */
+.contadorCarrito {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+
+  background: var(--color-marca); /* amarillo de marca */
+  color: #000;                    /* número en negro para contraste */
+
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+
+  /* borde/halo para que se lea sobre fondo oscuro */
+  box-shadow: 0 0 0 2px #212529;  /* igual al bg de tu navbar */
+  z-index: 2;
+}

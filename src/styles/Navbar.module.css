@@ -1,0 +1,24 @@
+/* =========================
+   NAVBAR
+   ========================= */
+   
+.navbarCustom {
+  z-index: 1030;
+  background-color: #212529 !important; /* oscuro */
+  padding: 0.5rem 1rem;
+}
+
+.logoCustom {
+  color: var(--color-marca);
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.linksCustom a {
+  margin: 0 0.5rem;
+  color: #fff !important;
+}
+
+.linksCustom a:hover {
+  color: var(--color-marca) !important;
+}

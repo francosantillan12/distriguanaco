@@ -1,10 +1,12 @@
-const CartWidget = ({cantidad}) => {
+import styles from "../styles/CartWidget.module.css";
+
+export default function CartWidget({ cantidad }) {
   return (
-    <div className="cart-widget">
+    <div className={styles.cartWidget} aria-label="Carrito">
       🛒
-      {cantidad > 0 && <span className="contador-carrito">{cantidad}</span>}
+      {cantidad > 0 && (
+        <span className={styles.contadorCarrito}>{cantidad}</span>
+      )}
     </div>
   );
-};
-
-export default CartWidget;
+}

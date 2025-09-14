@@ -10,22 +10,20 @@ const withLoading = (Component) => {
       return (
         <div
           style={{
-            display: "flex",            // 👈 flexbox para centrar
-            justifyContent: "center",   // 👈 centrado horizontal
-            alignItems: "center",       // 👈 centrado vertical
-            height: "50vh",             // 👈 ocupa medio alto de la pantalla
+            display: "flex",           
+            justifyContent: "center",   
+            alignItems: "center",       
+            height: "50vh",            
           }}
         >
-          <PulseLoader color="#fffb02ff" size={15} /> {/* 👈 spinner de pulsos */}
+          <PulseLoader color="#fffb02ff" size={15} /> 
         </div>
       );
     }
-
-    // si hay items, renderizamos el componente original con todas sus props
     return <Component {...props} />;
   }
 
-  return ComponentWithLoading; // 👈 devolvemos el nuevo componente
+  return ComponentWithLoading; 
 };
 
-export default withLoading; // 👈 exportamos como default
+export default withLoading; 

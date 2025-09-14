@@ -1,16 +1,33 @@
-# 🦝 DistriGuanaco
+# 🟡 DistriGuanaco
 
-**DistriGuanaco** es un proyecto de e-commerce mayorista para GreenHouse, una dietética especializada en productos naturales. Esta aplicación web está desarrollada en **React** como parte de la cursada de React en CoderHouse.
-
-## 🚀 Primera entrega
-
-Actualmente, la aplicación cuenta con:
-
-- ✅ Componente `NavBar` con el logo de la tienda, enlaces de navegación y widget del carrito de compras.
-- ✅ Componente `CartWidget` con contador de productos en el carrito.
-- ✅ Componente `ItemListContainer` que muestra un mensaje de bienvenida mediante el uso de **props**.
-- ✅ Estructura de proyecto ordenada con carpeta `/components` dentro de `src`.
-- ✅ Estilos en CSS personalizados (sin frameworks externos).
+Proyecto de e-commerce mayorista, desarrollado en **React** con **Vite**.  
+Forma parte de la segunda entrega del curso de **React (CoderHouse)**.
 
 
+
+## 🧩 Componentes principales
+
+- **NavBar** → Navegación fija arriba, menú de categorías y carrito.  
+- **CartWidget** → Ícono 🛒 con contador dinámico.  
+- **Item / ItemList / ItemListContainer** → Cards de productos con imagen, categoría, stock, precio y botones.  
+
+---
+
+## 🎨 Estilos
+
+- **Bootstrap + React Bootstrap** para la base.  
+- **CSS Modules** para cada componente.  
+- **index.css** para variables globales y el botón de marca (`.btn-marca`)...
+
+
+
+---
+
+## 📂 Estructura
+
+- **`src/components/`** → Componentes de React (NavBar, CartWidget, Item, etc.)  
+- **`src/styles/`** → Estilos con CSS Modules  
+- **`src/index.css`** → Variables globales, reset y utilidades (`.btn-marca`)  
+
+---
 

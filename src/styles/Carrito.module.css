@@ -1,0 +1,100 @@
+
+.carritoContainer {
+  padding: 1.5rem;
+}
+
+.titulo {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #212529;
+}
+
+/* 👇 Wrapper para scroll horizontal suave */
+.tablaWrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabla {
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imagenProducto {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cantidadGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cantidadNum {
+  min-width: 24px;
+  text-align: center;
+}
+
+.totalContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--color-marca);
+}
+
+/* ======= Mobile tweaks ======= */
+@media (max-width: 576px) {
+  .carritoContainer {
+    padding: 1rem;
+  }
+
+  .titulo {
+    font-size: 1.4rem;
+  }
+
+  /* Compactar celdas y tipografías */
+  .tabla th,
+  .tabla td {
+    padding: 8px 6px;
+    font-size: 0.95rem;
+    vertical-align: middle;
+    white-space: nowrap; 
+  }
+
+  .imagenProducto {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .cantidadGroup {
+    gap: 6px;
+  }
+
+  .cantidadGroup :is(button, .btn) {
+    padding: 2px 8px;
+    font-size: 0.85rem;
+  }
+
+  .cantidadNum {
+    min-width: 20px;
+    font-size: 0.95rem;
+  }
+
+  .totalContainer {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}

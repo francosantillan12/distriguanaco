@@ -1,17 +1,19 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ItemCount from "./ItemCount";
+import { CarritoContext } from "./CarritoContext";
 
 function ItemDetailContainer() {
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const { agregarProducto } = useContext(CarritoContext);
 
   useEffect(() => {
     setCargando(true);
@@ -35,7 +37,6 @@ function ItemDetailContainer() {
       });
   }, [id]);
 
-
   if (cargando) {
     return <p className="p-3">Cargando detalle…</p>;
   }
@@ -58,7 +59,6 @@ function ItemDetailContainer() {
     );
   }
 
- 
   const imagenPrincipal =
     producto.images && producto.images.length > 0 ? producto.images[0] : producto.thumbnail;
 
@@ -79,12 +79,20 @@ function ItemDetailContainer() {
               <Card.Text className="mb-1">Stock: {producto.stock}</Card.Text>
               <Card.Text className="fs-5 fw-bold mb-3">Precio: ${producto.price}</Card.Text>
               <Card.Text className="text-muted">{producto.description}</Card.Text>
+
               <div className="mt-auto d-flex gap-2 align-items-center">
                 <ItemCount
                   stock={producto.stock}
                   inicial={1}
                   onAdd={function (cantidadElegida) {
-                    console.log("Agregar", cantidadElegida, "unidades de", producto.title);
+                    // ✅ Agregar al carrito usando el contexto
+                    agregarProducto({
+                      id: producto.id,
+                      title: producto.title,
+                      price: producto.price,
+                      thumbnail: imagenPrincipal,
+                      cantidad: cantidadElegida
+                    });
                   }}
                 />
                 <Button as={Link} to="/" variant="outline-secondary">

@@ -1,40 +1,29 @@
-
+// ItemListContainer.jsx
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";      
 import ItemList from "./ItemList";
-import withLoading from "./hoc/withLoading";      
+import { getItems } from "../firebase/db.js"; // importante la extensión .js
+import withLoading from "./hoc/withLoading";
 
 const ItemListWithLoading = withLoading(ItemList);
 
 function ItemListContainer({ mensaje = "" }) {
-  const { categoriaId } = useParams();            
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);       
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setError(null);                                 
-    const url = categoriaId
-      ? `https://dummyjson.com/products/category/${categoriaId}`
-      : `https://dummyjson.com/products`;
+    setError(null);
 
-
-    fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error("Fallo la carga de productos");
-        return res.json();
-      })
-      .then((data) => {
-        const productos = Array.isArray(data.products) ? data.products : [];
-        setTimeout(() => {
-          setItems(productos);
-        }, 800);
+    getItems()
+      .then((productos) => {
+        // mantenemos tu delay para el loading del HOC
+        setTimeout(() => setItems(productos), 800);
       })
       .catch((err) => {
-        console.error("Error al traer productos:", err);
-        setItems([]);                                
+        console.error("Error al traer productos desde Firestore:", err);
+        setItems([]);
         setError("No se pudieron cargar los productos.");
       });
-  }, [categoriaId]);                                 
+  }, []);
 
   return (
     <>
@@ -45,4 +34,5 @@ function ItemListContainer({ mensaje = "" }) {
 }
 
 export default ItemListContainer;
+
 

@@ -1,12 +1,13 @@
+
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import CartWidget from "./CartWidget";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router-dom";
-import styles from "../styles/Navbar.module.css"; 
+import styles from "../styles/Navbar.module.css";
 
-const NavBar = ({ cantidad, categories }) => {
+const NavBar = ({ categories = [] }) => {
   return (
     <Navbar
       bg="dark"
@@ -23,7 +24,7 @@ const NavBar = ({ cantidad, categories }) => {
         </Navbar.Brand>
 
         <div className="d-flex align-items-center ms-auto order-md-2">
-          <CartWidget cantidad={cantidad} />
+          <CartWidget />
           <Navbar.Toggle aria-controls="menu-principal" className="ms-2" />
         </div>
 
@@ -36,11 +37,11 @@ const NavBar = ({ cantidad, categories }) => {
 
               {categories.map((category) => (
                 <NavDropdown.Item
-                  key={category}
                   as={NavLink}
-                  to={`/categoria/${category}`}
+                  to={`/categoria/${category.categoryName}`}
+                  key={category.categoryName}
                 >
-                  {category}
+                  {category.categoryName}
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
@@ -52,5 +53,6 @@ const NavBar = ({ cantidad, categories }) => {
 };
 
 export default NavBar;
+
 
 

@@ -1,12 +1,18 @@
+
+import { useContext } from "react";
+import { CarritoContext } from "./CarritoContext";
+import { Link } from "react-router-dom";  // 👈 importamos Link
 import styles from "../styles/CartWidget.module.css";
 
-export default function CartWidget({ cantidad }) {
+export default function CartWidget() {
+  const { cantidadTotal } = useContext(CarritoContext);
+
   return (
-    <div className={styles.cartWidget} aria-label="Carrito">
+    <Link to="/carrito" className={styles.cartWidget} aria-label="Carrito">
       🛒
-      {cantidad > 0 && (
-        <span className={styles.contadorCarrito}>{cantidad}</span>
+      {cantidadTotal > 0 && (
+        <span className={styles.contadorCarrito}>{cantidadTotal}</span>
       )}
-    </div>
+    </Link>
   );
 }

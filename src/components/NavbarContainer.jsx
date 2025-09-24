@@ -1,19 +1,17 @@
 
 import { useEffect, useState } from "react";
+import { getCategorias } from "../firebase/db.js";
 import NavBar from "./NavBar";
 
-const NavBarContainer = ({ cantidad }) => {
+const NavBarContainer = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("https://dummyjson.com/products/category-list")
-      .then((res) => res.json())
-      .then((data) => setCategories(data))
-      .catch((error) => console.error("Error al traer categorías:", error));
+  getCategorias(0)
+  .then(data => setCategories(data))
   }, []);
 
-  return <NavBar cantidad={cantidad} categories={categories} />;
+  return <NavBar categories={categories} />;
 };
 
 export default NavBarContainer;
-

@@ -1,38 +1,46 @@
-// ItemListContainer.jsx
+// src/components/ItemListContainer.jsx
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import { getItems } from "../firebase/db.js"; // importante la extensión .js
+import { getItems, getItemsByCategory } from "../firebase/db.js";
 import withLoading from "./hoc/withLoading";
+
+
+
 
 const ItemListWithLoading = withLoading(ItemList);
 
 function ItemListContainer({ mensaje = "" }) {
+  const { categoriaId } = useParams();
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  useEffect(function () {
     setError(null);
+    setItems([]);
 
-    getItems()
-      .then((productos) => {
-        // mantenemos tu delay para el loading del HOC
-        setTimeout(() => setItems(productos), 800);
+    const promesa = categoriaId
+      ? getItemsByCategory(categoriaId)
+      : getItems();
+
+    promesa
+      .then(function (productos) {
+        setTimeout(() => setItems(productos || []), 800);
       })
-      .catch((err) => {
+      .catch(function (err) {
         console.error("Error al traer productos desde Firestore:", err);
         setItems([]);
         setError("No se pudieron cargar los productos.");
       });
-  }, []);
+  }, [categoriaId]);
 
-  return (
-    <>
-      {error ? <p className="text-danger">{error}</p> : null}
-      <ItemListWithLoading items={items} mensaje={mensaje} />
-    </>
-  );
+  // manejo de error con if (return temprano)
+  if (error) {
+    return <p className="text-danger">{error}</p>;
+  }
+
+  return <ItemListWithLoading items={items} mensaje={mensaje} />;
 }
 
 export default ItemListContainer;
-
 

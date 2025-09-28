@@ -124,7 +124,7 @@ function Carrito() {
       </div>
 
       <div className={styles.totalContainer}>
-        <Button variant="outline-danger" onClick={vaciarCarrito}>Vaciar carrito</Button>
+        <Button variant="danger" onClick={vaciarCarrito}>Vaciar carrito</Button>
 
         {/* ❌ Dependía de si totalPrecio es número o función.
             ✅ Compatibilidad: si es función la invocamos, sino lo mostramos directo. */}

@@ -1,15 +1,16 @@
-
+// src/components/Carrito.jsx
 import { useContext } from "react";
 import { CarritoContext } from "./CarritoContext";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+// ❌ Estaba importado dos veces useNavigate en líneas separadas.
+// ✅ Dejalo en una sola línea junto con Link:
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Carrito.module.css";
 
 const aDosDecimales = (n) => `$${Number(n || 0).toFixed(2)}`;
 
 function Carrito() {
-
   const {
     carrito,
     cambiarCantidad,
@@ -17,6 +18,8 @@ function Carrito() {
     vaciarCarrito,
     totalPrecio,
   } = useContext(CarritoContext);
+
+  const navigate = useNavigate(); // ✅ OK
 
   function aumentar(id) {
     const item = carrito.find(function (i) { return i.id === id; });
@@ -72,7 +75,11 @@ function Carrito() {
                     )}
                     <span>{item.title}</span>
                   </td>
-                  <td>{aDosDecimales(item.price * item.cantidad)}</td>
+
+                  {/* ❌ Acá antes estabas mostrando el SUBTOTAL en la columna "Precio".
+                      ✅ Debe ser el precio unitario: */}
+                  <td>{aDosDecimales(item.price)}</td>
+
                   <td>
                     <div className={styles.cantidadGroup}>
                       <Button
@@ -95,7 +102,11 @@ function Carrito() {
                       </Button>
                     </div>
                   </td>
-                  <td>${item.price * item.cantidad}</td>
+
+                  {/* ❌ Acá mostrabas `${item.price * item.cantidad}` sin formatear.
+                      ✅ Usamos el helper para mantener el formato: */}
+                  <td>{aDosDecimales(item.price * item.cantidad)}</td>
+
                   <td>
                     <Button
                       variant="outline-danger"
@@ -114,13 +125,25 @@ function Carrito() {
 
       <div className={styles.totalContainer}>
         <Button variant="outline-danger" onClick={vaciarCarrito}>Vaciar carrito</Button>
-        <h4 className={styles.total}>Total: {aDosDecimales(totalPrecio)}</h4>
 
+        {/* ❌ Dependía de si totalPrecio es número o función.
+            ✅ Compatibilidad: si es función la invocamos, sino lo mostramos directo. */}
+        <h4 className={styles.total}>
+          Total: {aDosDecimales(typeof totalPrecio === "function" ? totalPrecio() : totalPrecio)}
+        </h4>
       </div>
 
       <div className="mt-3 d-flex gap-2">
         <Link to="/" className="btn btn-outline-secondary">Seguir comprando</Link>
-        <Button variant="success">Finalizar compra</Button>
+
+        {/* ✅ Navega a tu ruta EXACTA definida como "/FinalizarCompra".
+            (No cambié la URL a minúsculas porque pediste mantener el uso tal cual.) */}
+        <Button
+          variant="success"
+          onClick={function () { navigate("/FinalizarCompra"); }}
+        >
+          Finalizar compra
+        </Button>
       </div>
     </div>
   );

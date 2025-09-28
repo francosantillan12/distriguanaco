@@ -1,4 +1,4 @@
-import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, where, doc, getDoc, addDoc } from "firebase/firestore";
 import { app } from "./config.js"; // solo este import
 
 
@@ -40,10 +40,17 @@ export const getItem = async (id) =>{
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
-    console.log("Document data:", docSnap.data());
     return {...docSnap.data(), id: docSnap.id}
-  } else {
-    
+  } else {    
     console.log("No such document!");
   }
 }
+
+
+export const createOrder = async (order) => {
+  const docRef = await addDoc(collection(db, "orders"), order);
+  console.log("Se creo un documento con el ID: ", docRef.id);
+  return docRef.id; // ← clave para que llegue a tu .then(orderId)
+};
+
+

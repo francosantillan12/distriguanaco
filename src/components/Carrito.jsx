@@ -3,8 +3,6 @@ import { useContext } from "react";
 import { CarritoContext } from "./CarritoContext";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-// ❌ Estaba importado dos veces useNavigate en líneas separadas.
-// ✅ Dejalo en una sola línea junto con Link:
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Carrito.module.css";
 
@@ -19,7 +17,7 @@ function Carrito() {
     totalPrecio,
   } = useContext(CarritoContext);
 
-  const navigate = useNavigate(); // ✅ OK
+  const navigate = useNavigate(); 
 
   function aumentar(id) {
     const item = carrito.find(function (i) { return i.id === id; });
@@ -47,7 +45,6 @@ function Carrito() {
     <div className={styles.carritoContainer}>
       <h2 className={styles.titulo}>Tu carrito</h2>
 
-      {/* 👇 Wrapper para scroll horizontal en mobile */}
       <div className={styles.tablaWrapper}>
         <Table striped bordered hover responsive className={styles.tabla}>
           <thead>
@@ -75,9 +72,6 @@ function Carrito() {
                     )}
                     <span>{item.title}</span>
                   </td>
-
-                  {/* ❌ Acá antes estabas mostrando el SUBTOTAL en la columna "Precio".
-                      ✅ Debe ser el precio unitario: */}
                   <td>{aDosDecimales(item.price)}</td>
 
                   <td>
@@ -102,9 +96,6 @@ function Carrito() {
                       </Button>
                     </div>
                   </td>
-
-                  {/* ❌ Acá mostrabas `${item.price * item.cantidad}` sin formatear.
-                      ✅ Usamos el helper para mantener el formato: */}
                   <td>{aDosDecimales(item.price * item.cantidad)}</td>
 
                   <td>
@@ -125,9 +116,6 @@ function Carrito() {
 
       <div className={styles.totalContainer}>
         <Button variant="danger" onClick={vaciarCarrito}>Vaciar carrito</Button>
-
-        {/* ❌ Dependía de si totalPrecio es número o función.
-            ✅ Compatibilidad: si es función la invocamos, sino lo mostramos directo. */}
         <h4 className={styles.total}>
           Total: {aDosDecimales(typeof totalPrecio === "function" ? totalPrecio() : totalPrecio)}
         </h4>
@@ -135,9 +123,7 @@ function Carrito() {
 
       <div className="mt-3 d-flex gap-2">
         <Link to="/" className="btn btn-outline-secondary">Seguir comprando</Link>
-
-        {/* ✅ Navega a tu ruta EXACTA definida como "/FinalizarCompra".
-            (No cambié la URL a minúsculas porque pediste mantener el uso tal cual.) */}
+        
         <Button
           variant="success"
           onClick={function () { navigate("/FinalizarCompra"); }}

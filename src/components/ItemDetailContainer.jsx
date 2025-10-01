@@ -1,4 +1,4 @@
-// src/components/ItemDetailContainer.jsx
+
 import { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
@@ -57,7 +57,6 @@ function ItemDetailContainer() {
     );
   }
 
-  // 🔁 Compatibilidad Firestore vs. API vieja
   const imagenPrincipal =
     (producto.imagen) ||
     (producto.images && producto.images[0]) ||

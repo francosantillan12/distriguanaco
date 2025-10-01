@@ -1,33 +1,33 @@
-# 🟡 DistriGuanaco
+# 🛒 DistriGuanaco
 
-Proyecto de e-commerce mayorista, desarrollado en **React** con **Vite**.  
-Forma parte de la segunda entrega del curso de **React (CoderHouse)**.
-
-
-
-## 🧩 Componentes principales
-
-- **NavBar** → Navegación fija arriba, menú de categorías y carrito.  
-- **CartWidget** → Ícono 🛒 con contador dinámico.  
-- **Item / ItemList / ItemListContainer** → Cards de productos con imagen, categoría, stock, precio y botones.  
+**DistriGuanaco** es una aplicación web desarrollada en **React** para la gestión y venta de productos de dietética.  
+Forma parte de la cursada de **React en Coderhouse** (Entrega Final).
 
 ---
 
-## 🎨 Estilos
+## 📌 Funcionalidades principales
 
-- **Bootstrap + React Bootstrap** para la base.  
-- **CSS Modules** para cada componente.  
-- **index.css** para variables globales y el botón de marca (`.btn-marca`)...
-
-
+- Catálogo de productos conectado a **Firebase Firestore**.
+- Filtrado de productos por **categoría**.
+- Vista de detalle de cada producto.
+- Carrito de compras con:
+  - Agregar / eliminar productos.
+  - Modificar cantidades.
+  - Subtotal y total de la compra.
+- Control de **stock** desde la base de datos.
+- Uso de **Context API** para el manejo global del carrito.
+- Navegación con **React Router DOM**.
+- Estilos con **CSS Modules** y **React-Bootstrap**.
 
 ---
 
-## 📂 Estructura
+## ⚙️ Tecnologías utilizadas
 
-- **`src/components/`** → Componentes de React (NavBar, CartWidget, Item, etc.)  
-- **`src/styles/`** → Estilos con CSS Modules  
-- **`src/index.css`** → Variables globales, reset y utilidades (`.btn-marca`)  
+- [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+- [Firebase Firestore](https://firebase.google.com/)
+- [React Router DOM](https://reactrouter.com/)
+- [React-Bootstrap](https://react-bootstrap.github.io/)
+- [CSS Modules](https://github.com/css-modules/css-modules)
 
 ---
 

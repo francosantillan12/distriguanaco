@@ -1,5 +1,5 @@
 import { getFirestore, collection, getDocs, query, where, doc, getDoc, addDoc } from "firebase/firestore";
-import { app } from "./config.js"; // solo este import
+import { app } from "./config.js"; 
 
 
 
@@ -50,7 +50,7 @@ export const getItem = async (id) =>{
 export const createOrder = async (order) => {
   const docRef = await addDoc(collection(db, "orders"), order);
   console.log("Se creo un documento con el ID: ", docRef.id);
-  return docRef.id; // ← clave para que llegue a tu .then(orderId)
+  return docRef.id; 
 };
 
 

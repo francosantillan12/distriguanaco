@@ -1,12 +1,9 @@
 
 import { createContext, useEffect, useState } from "react";
 
-// 1️⃣ Creamos el contexto
 export const CarritoContext = createContext();
 
-// 2️⃣ Proveedor del contexto
 export function CarritoProvider({ children }) {
-  // ✅ Inicializar carrito desde localStorage (una sola vez)
   const [carrito, setCarrito] = useState(function () {
     try {
       const guardado = localStorage.getItem("carrito");
@@ -17,7 +14,6 @@ export function CarritoProvider({ children }) {
     }
   });
 
-  // ✅ Sincronizar cambios del carrito a localStorage
   useEffect(function () {
     try {
       localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -26,7 +22,6 @@ export function CarritoProvider({ children }) {
     }
   }, [carrito]);
 
-  // 🔹 Agregar (si existe suma, si no agrega con cantidad 1 por defecto)
   function agregarProducto(producto) {
     setCarrito(function (anterior) {
       const existe = anterior.find(function (item) { return item.id === producto.id; });
@@ -44,19 +39,16 @@ export function CarritoProvider({ children }) {
     });
   }
 
-  // 🔹 Eliminar
   function eliminarProducto(id) {
     setCarrito(function (anterior) {
       return anterior.filter(function (item) { return item.id !== id; });
     });
   }
 
-  // 🔹 Vaciar
   function vaciarCarrito() {
     setCarrito([]);
   }
 
-  // 🔹 Cambiar cantidad (+/– en el carrito)
   function cambiarCantidad(id, nuevaCantidad) {
     const cantidad = Number(nuevaCantidad);
     if (isNaN(cantidad) || cantidad < 1) return;
@@ -68,7 +60,6 @@ export function CarritoProvider({ children }) {
     });
   }
 
-  // 🔹 Totales
   const cantidadTotal = carrito.reduce(function (acc, item) {
     return acc + Number(item.cantidad || 0);
   }, 0);

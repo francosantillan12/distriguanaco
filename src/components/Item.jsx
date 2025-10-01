@@ -13,7 +13,6 @@ export default function Item({ item }) {
   const { agregarProducto } = useContext(CarritoContext);
   const [mostrarAviso, setMostrarAviso] = useState(false);
 
-  // helpers de visualización
   const nombre = item?.nombre ?? "Producto sin nombre";
   const precio = item?.precio ?? 0;
   const imagen = item?.imagen ?? "";
@@ -25,10 +24,10 @@ export default function Item({ item }) {
   function agregarUnoAlCarrito() {
     agregarProducto({
       id: item.id,
-      title: nombre,           // usamos 'nombre' como title interno del carrito
-      thumbnail: imagen,       // imagen de Firestore
+      title: nombre,           
+      thumbnail: imagen,      
       cantidad: 1,
-      price: precio,           // precio de Firestore
+      price: precio,           
     });
     setMostrarAviso(true);
   }
@@ -50,7 +49,6 @@ export default function Item({ item }) {
               Categoría: {categorias}
             </Card.Text>
 
-            {/* si tenés 'stock' en Firestore, lo mostrás. Si no, lo saco */}
             {item?.stock !== undefined && (
               <Card.Text className={styles.cardText}>Stock: {item.stock}</Card.Text>
             )}

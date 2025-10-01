@@ -1,4 +1,4 @@
-//VOY POR EL VIDEO 1:50HS", SEGUIR VIENDO LA CLASE DESDE AHI
+
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 

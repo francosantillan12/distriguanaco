@@ -1,4 +1,4 @@
-// src/components/FinalizarCompra.jsx
+
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
@@ -21,7 +21,6 @@ function FinalizarCompra() {
     e.preventDefault();
     if (enviando) return;
 
-    // ✅ NUEVO: si el carrito está vacío, no dejamos generar la orden
     if (!carrito || carrito.length === 0) {
       setError('Tu carrito está vacío. Agregá productos antes de finalizar la compra.');
       return;
@@ -129,7 +128,6 @@ function FinalizarCompra() {
           <Button
             variant="dark"
             type="submit"
-            // ✅ NUEVO: deshabilitar si se está enviando o si el carrito quedó vacío
             disabled={enviando || !carrito || carrito.length === 0}
           >
             {enviando ? 'Procesando…' : 'Finalizar compra'}

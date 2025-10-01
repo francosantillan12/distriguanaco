@@ -1,4 +1,4 @@
-// src/components/ItemListContainer.jsx
+
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
@@ -34,7 +34,7 @@ function ItemListContainer({ mensaje = "" }) {
       });
   }, [categoriaId]);
 
-  // manejo de error con if (return temprano)
+  
   if (error) {
     return <p className="text-danger">{error}</p>;
   }

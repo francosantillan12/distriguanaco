@@ -47,10 +47,14 @@ export const getItem = async (id) =>{
 }
 
 export const createOrder = async (order) => {
-  const docRef = await addDoc(collection(db, "orders"), order);
-  console.log("Se creo un documento con el ID: ", docRef.id);
-  return docRef.id; 
+  try {
+    const docRef = await addDoc(collection(db, "orders"), order);
+    console.log("✅ Se creó un documento con el ID:", docRef.id);
+    return docRef.id; 
+  } catch (error) {
+    console.error("❌ Error al crear la orden:", error);
+    throw error; 
+  }
 };
-
 
 

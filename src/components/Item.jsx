@@ -10,8 +10,10 @@ import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 
 export default function Item({ item }) {
-  const { agregarProducto } = useContext(CarritoContext);
+  const { carrito, agregarProducto } = useContext(CarritoContext); 
   const [mostrarAviso, setMostrarAviso] = useState(false);
+  const [mensajeAviso, setMensajeAviso] = useState(""); 
+  const [bgAviso, setBgAviso] = useState("success");  
 
   const nombre = item?.nombre ?? "Producto sin nombre";
   const precio = item?.precio ?? 0;
@@ -22,13 +24,27 @@ export default function Item({ item }) {
     : item?.categorias ?? "Sin categoría";
 
   function agregarUnoAlCarrito() {
+    
+    const yaEnCarrito = carrito.some((prod) => prod.id === item.id);
+
+    if (yaEnCarrito) {
+      setMensajeAviso("⚠️ El producto ya está en el carrito");
+      setBgAviso("danger"); // rojo
+      setMostrarAviso(true);
+      return;
+    }
+
+   
     agregarProducto({
       id: item.id,
-      title: nombre,           
-      thumbnail: imagen,      
+      title: nombre,
+      thumbnail: imagen,
       cantidad: 1,
-      price: precio,           
+      price: precio,
     });
+
+    setMensajeAviso("✅ Producto agregado al carrito");
+    setBgAviso("success"); 
     setMostrarAviso(true);
   }
 
@@ -50,12 +66,12 @@ export default function Item({ item }) {
             </Card.Text>
 
             {item?.stock !== undefined && (
-              <Card.Text className={styles.cardText}>Stock: {item.stock}</Card.Text>
+              <Card.Text className={styles.cardText}>
+                Stock: {item.stock}
+              </Card.Text>
             )}
 
-            <Card.Text className={styles.cardText}>
-              {descripcion}
-            </Card.Text>
+            <Card.Text className={styles.cardText}>{descripcion}</Card.Text>
 
             <Card.Text className="fw-bold">
               Precio: $
@@ -77,17 +93,15 @@ export default function Item({ item }) {
         </Card>
       </Col>
 
-      <ToastContainer position="top-end" className="p-3">
+      <ToastContainer position="top-center" className="p-3 position-fixed" >
         <Toast
           onClose={() => setMostrarAviso(false)}
           show={mostrarAviso}
-          delay={1400}
+          delay={1600}
           autohide
-          bg="success"
+          bg={bgAviso}
         >
-          <Toast.Body className="text-white">
-            ✅ Producto agregado al carrito
-          </Toast.Body>
+          <Toast.Body className="text-white">{mensajeAviso}</Toast.Body>
         </Toast>
       </ToastContainer>
     </>

@@ -1,10 +1,11 @@
-
 import { useEffect, useState, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Toast from "react-bootstrap/Toast";
+import ToastContainer from "react-bootstrap/ToastContainer";
 import ItemCount from "./ItemCount";
 import { CarritoContext } from "./CarritoContext";
 import { getItem } from "../firebase/db.js";
@@ -14,7 +15,11 @@ function ItemDetailContainer() {
   const [producto, setProducto] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
-  const { agregarProducto } = useContext(CarritoContext);
+  const [mostrarAviso, setMostrarAviso] = useState(false);
+  const [mensajeAviso, setMensajeAviso] = useState("");
+  const [bgAviso, setBgAviso] = useState("success");
+
+  const { carrito, agregarProducto } = useContext(CarritoContext);
 
   useEffect(function () {
     setCargando(true);
@@ -58,15 +63,41 @@ function ItemDetailContainer() {
   }
 
   const imagenPrincipal =
-    (producto.imagen) ||
+    producto.imagen ||
     (producto.images && producto.images[0]) ||
-    producto.thumbnail || "";
+    producto.thumbnail ||
+    "";
 
   const titulo = producto.nombre || producto.title || "Producto";
   const categoria = producto.categoria || producto.category || "";
   const stock = Number(producto.stock || 0);
   const precio = Number(producto.precio || producto.price || 0);
   const descripcion = producto.descripcion || producto.description || "";
+
+  function manejarAdd(cantidadElegida) {
+    const yaEnCarrito = carrito.some(function (p) {
+      return p.id === producto.id;
+    });
+
+    if (yaEnCarrito) {
+      setMensajeAviso("⚠️ El producto ya está en el carrito");
+      setBgAviso("danger");
+      setMostrarAviso(true);
+      return;
+    }
+
+    agregarProducto({
+      id: producto.id,
+      title: titulo,
+      price: precio,
+      thumbnail: imagenPrincipal,
+      cantidad: cantidadElegida,
+    });
+
+    setMensajeAviso("✅ Producto agregado al carrito");
+    setBgAviso("success");
+    setMostrarAviso(true);
+  }
 
   return (
     <div className="p-3">
@@ -90,15 +121,7 @@ function ItemDetailContainer() {
                 <ItemCount
                   stock={stock}
                   inicial={1}
-                  onAdd={function (cantidadElegida) {
-                    agregarProducto({
-                      id: producto.id,
-                      title: titulo,
-                      price: precio,
-                      thumbnail: imagenPrincipal,
-                      cantidad: cantidadElegida
-                    });
-                  }}
+                  onAdd={manejarAdd}
                 />
                 <Button as={Link} to="/" variant="outline-secondary">
                   Seguir comprando
@@ -108,6 +131,18 @@ function ItemDetailContainer() {
           </Card>
         </Col>
       </Row>
+
+      <ToastContainer position="top-center" className="p-3 position-fixed">
+        <Toast
+          onClose={function () { setMostrarAviso(false); }}
+          show={mostrarAviso}
+          delay={1600}
+          autohide
+          bg={bgAviso}
+        >
+          <Toast.Body className="text-white">{mensajeAviso}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </div>
   );
 }

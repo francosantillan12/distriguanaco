@@ -16,21 +16,15 @@ export default function App() {
       <NavBarContainer cantidad={cantidadEnCarrito} />
 
       <Routes>
-        <Route
-          path="/"
-          element={<ItemListContainer mensaje="Bienvenidos a DistriGuanaco" />}
-        />
-        <Route
-          path="/categoria/:categoriaId"
-          element={<ItemListContainer mensaje="Filtrado por categoria" />}
-        />
+        <Route path="/" element={<ItemListContainer mensaje="Bienvenidos a DistriGuanaco" />} />
+        <Route path="/categoria/:categoriaId" element={<ItemListContainer mensaje="Filtrado por categoria" />} />
         <Route path="/detalle/:id" element={<ItemDetailContainer />} />
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/FinalizarCompra" element={<FinalizarCompra />} />
         <Route path="*" element={<h2>404 - Página no encontrada</h2>} />
       </Routes>
 
-      {/* Toaster global */}
+      
       <Toaster position="top-center" />
     </BrowserRouter>
   );

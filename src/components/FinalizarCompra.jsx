@@ -1,4 +1,4 @@
-// src/components/FinalizarCompra.jsx
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
@@ -150,7 +150,6 @@ function FinalizarCompra() {
           <div className="alert alert-secondary">No hay productos en el carrito.</div>
         )}
 
-        {/* Sin alerts de éxito/error; usamos toasts */}
         <Form className="w-100" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email address</Form.Label>

@@ -100,7 +100,7 @@ function Carrito() {
 
                   <td>
                     <Button
-                      variant="outline-danger"
+                      variant="danger"
                       size="sm"
                       onClick={function () { eliminarProducto(item.id); }}
                     >
@@ -122,7 +122,7 @@ function Carrito() {
       </div>
 
       <div className="mt-3 d-flex gap-2">
-        <Link to="/" className="btn btn-outline-secondary">Seguir comprando</Link>
+        <Link to="/" className="btn btn-secondary">Seguir comprando</Link>
         
         <Button
           variant="success"

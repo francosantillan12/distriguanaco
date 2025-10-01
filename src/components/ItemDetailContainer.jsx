@@ -18,6 +18,7 @@ function ItemDetailContainer() {
   const [mostrarAviso, setMostrarAviso] = useState(false);
   const [mensajeAviso, setMensajeAviso] = useState("");
   const [bgAviso, setBgAviso] = useState("success");
+  const [agregado, setAgregado] = useState(false); 
 
   const { carrito, agregarProducto } = useContext(CarritoContext);
 
@@ -97,6 +98,7 @@ function ItemDetailContainer() {
     setMensajeAviso("✅ Producto agregado al carrito");
     setBgAviso("success");
     setMostrarAviso(true);
+    setAgregado(true); 
   }
 
   return (
@@ -118,14 +120,23 @@ function ItemDetailContainer() {
               <Card.Text className="text-muted">{descripcion}</Card.Text>
 
               <div className="mt-auto d-flex gap-2 align-items-center">
-                <ItemCount
-                  stock={stock}
-                  inicial={1}
-                  onAdd={manejarAdd}
-                />
-                <Button as={Link} to="/" variant="outline-secondary">
-                  Seguir comprando
-                </Button>
+                {agregado ? (
+                  <>
+                    <Button as={Link} to="/carrito" variant="warning">
+                      Ir al carrito
+                    </Button>
+                    <Button as={Link} to="/" variant="outline-secondary">
+                      Seguir comprando
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <ItemCount stock={stock} inicial={1} onAdd={manejarAdd} />
+                    <Button as={Link} to="/" variant="outline-secondary">
+                      Seguir comprando
+                    </Button>
+                  </>
+                )}
               </div>
             </Card.Body>
           </Card>

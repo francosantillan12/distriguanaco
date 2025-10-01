@@ -1,4 +1,4 @@
-// src/components/Carrito.jsx
+
 import { useContext } from "react";
 import { CarritoContext } from "./CarritoContext";
 import Button from "react-bootstrap/Button";
@@ -126,7 +126,7 @@ function Carrito() {
         
         <Button
           variant="success"
-          onClick={function () { navigate("/FinalizarCompra"); }}
+          onClick={function () { navigate("/checkout"); }}
         >
           Finalizar compra
         </Button>

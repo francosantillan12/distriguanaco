@@ -1,11 +1,10 @@
-// src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import NavBarContainer from "./components/NavBarContainer";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Carrito from "./components/Carrito";
-import FinalizarCompra from "./components/FinalizarCompra";
+import Checkout from "./components/Checkout";
 
 export default function App() {
   return (
@@ -23,7 +22,7 @@ export default function App() {
         />
         <Route path="/detalle/:id" element={<ItemDetailContainer />} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/FinalizarCompra" element={<FinalizarCompra />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="*" element={<h2>404 - Página no encontrada</h2>} />
       </Routes>
 

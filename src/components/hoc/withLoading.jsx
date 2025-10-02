@@ -1,5 +1,4 @@
-// src/components/hoc/withLoading.jsx
-import PulseLoader from "react-spinners/PulseLoader"; // 👈 importamos el spinner
+import PulseLoader from "react-spinners/PulseLoader"; 
 
 // HOC: recibe un componente y devuelve uno nuevo
 const withLoading = (Component) => {

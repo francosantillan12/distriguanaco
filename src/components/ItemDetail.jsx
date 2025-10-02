@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -8,47 +7,20 @@ import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import ItemCount from "./ItemCount";
 
-function ItemDetail({ producto, carrito, agregarProducto }) {
-  const [mostrarAviso, setMostrarAviso] = useState(false);
-  const [mensajeAviso, setMensajeAviso] = useState("");
-  const [bgAviso, setBgAviso] = useState("success");
-  const [agregado, setAgregado] = useState(false);
-
-  const imagenPrincipal =
-    producto.imagen ||
-    (producto.images && producto.images[0]) ||
-    producto.thumbnail ||
-    "";
-
-  const titulo = producto.nombre || producto.title || "Producto";
-  const categoria = producto.categoria || producto.category || "";
-  const stock = Number(producto.stock || 0);
-  const precio = Number(producto.precio || producto.price || 0);
-  const descripcion = producto.descripcion || producto.description || "";
-
-  function manejarAdd(cantidadElegida) {
-    const yaEnCarrito = carrito.some((p) => p.id === producto.id);
-    if (yaEnCarrito) {
-      setMensajeAviso("⚠️ El producto ya está en el carrito");
-      setBgAviso("danger");
-      setMostrarAviso(true);
-      return;
-    }
-
-    agregarProducto({
-      id: producto.id,
-      title: titulo,
-      price: precio,
-      thumbnail: imagenPrincipal,
-      cantidad: cantidadElegida,
-    });
-
-    setMensajeAviso("✅ Producto agregado al carrito");
-    setBgAviso("success");
-    setMostrarAviso(true);
-    setAgregado(true);
-  }
-
+export default function ItemDetail({
+  titulo,
+  categoria,
+  stock,
+  precio,
+  descripcion,
+  imagenPrincipal,
+  agregado,               
+  onAdd,                  
+  mostrarAviso,           
+  mensajeAviso,          
+  bgAviso,                
+  onCloseAviso           
+}) {
   return (
     <div className="p-3">
       <Row className="g-4">
@@ -79,7 +51,7 @@ function ItemDetail({ producto, carrito, agregarProducto }) {
                   </>
                 ) : (
                   <>
-                    <ItemCount stock={stock} inicial={1} onAdd={manejarAdd} />
+                    <ItemCount stock={stock} inicial={1} onAdd={onAdd} />
                     <Button as={Link} to="/" variant="outline-secondary">
                       Seguir comprando
                     </Button>
@@ -93,7 +65,7 @@ function ItemDetail({ producto, carrito, agregarProducto }) {
 
       <ToastContainer position="top-center" className="p-3 position-fixed">
         <Toast
-          onClose={() => setMostrarAviso(false)}
+          onClose={onCloseAviso}
           show={mostrarAviso}
           delay={1600}
           autohide
@@ -105,5 +77,3 @@ function ItemDetail({ producto, carrito, agregarProducto }) {
     </div>
   );
 }
-
-export default ItemDetail;

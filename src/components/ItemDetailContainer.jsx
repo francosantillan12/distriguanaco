@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { CarritoContext } from "./CarritoContext";
+import { CartContext } from "./CartContext";
 import { getItem } from "../firebase/db.js";
 import ItemDetail from "./ItemDetail";
 
@@ -14,7 +14,7 @@ function ItemDetailContainer() {
   const [bgAviso, setBgAviso] = useState("success");
   const [agregado, setAgregado] = useState(false);
 
-  const { carrito, agregarProducto } = useContext(CarritoContext);
+  const { carrito, agregarProducto } = useContext(CartContext);
 
   useEffect(function () {
     setCargando(true);

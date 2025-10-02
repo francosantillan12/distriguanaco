@@ -8,18 +8,9 @@ import ToastContainer from "react-bootstrap/ToastContainer";
 import ItemCount from "./ItemCount";
 
 export default function ItemDetail({
-  titulo,
-  categoria,
-  stock,
-  precio,
-  descripcion,
-  imagenPrincipal,
-  agregado,               
-  onAdd,                  
-  mostrarAviso,           
-  mensajeAviso,          
-  bgAviso,                
-  onCloseAviso           
+  titulo, categoria, stock, precio, descripcion,
+  imagenPrincipal, agregado, onAdd, mostrarAviso, 
+  mensajeAviso,bgAviso,onCloseAviso           
 }) {
   return (
     <div className="p-3">

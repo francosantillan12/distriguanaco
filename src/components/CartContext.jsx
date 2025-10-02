@@ -1,9 +1,8 @@
-
 import { createContext, useEffect, useState } from "react";
 
-export const CarritoContext = createContext();
+export const CartContext = createContext();
 
-export function CarritoProvider({ children }) {
+export function CartProvider({ children }) {
   const [carrito, setCarrito] = useState(function () {
     try {
       const guardado = localStorage.getItem("carrito");
@@ -65,11 +64,12 @@ export function CarritoProvider({ children }) {
   }, 0);
 
   const totalPrecio = carrito.reduce(function (acc, item) {
-    return acc + Number(item.cantidad || 0) * Number(item.price || 0);
+    const precioUnit = Number(item.precio || item.price || 0);
+    return acc + Number(item.cantidad || 0) * precioUnit;
   }, 0);
 
   return (
-    <CarritoContext.Provider
+    <CartContext.Provider
       value={{
         carrito,
         agregarProducto,
@@ -81,6 +81,7 @@ export function CarritoProvider({ children }) {
       }}
     >
       {children}
-    </CarritoContext.Provider>
+    </CartContext.Provider>
   );
 }
+

@@ -3,14 +3,14 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
 import { useContext, useState } from "react";
-import { CarritoContext } from "./CarritoContext";
+import { CartContext } from "./CartContext";
 import { serverTimestamp } from "firebase/firestore";
 import { createOrder } from "../firebase/db";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function FinalizarCompra() {
-  const { totalPrecio, carrito, vaciarCarrito } = useContext(CarritoContext);
+  const { totalPrecio, carrito, vaciarCarrito } = useContext(CartContext);
   const [enviando, setEnviando] = useState(false);
   const navigate = useNavigate();
 

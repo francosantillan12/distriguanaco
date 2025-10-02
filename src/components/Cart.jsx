@@ -1,6 +1,6 @@
 
 import { useContext } from "react";
-import { CarritoContext } from "./CarritoContext";
+import { CartContext } from "./CartContext";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ function Carrito() {
     eliminarProducto,
     vaciarCarrito,
     totalPrecio,
-  } = useContext(CarritoContext);
+  } = useContext(CartContext);
 
   const navigate = useNavigate(); 
 

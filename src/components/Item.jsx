@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import styles from "../styles/Item.module.css";
 
 import { useContext, useState } from "react";
-import { CarritoContext } from "./CarritoContext";
+import { CartContext } from "./CartContext";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 
 export default function Item({ item }) {
-  const { carrito, agregarProducto } = useContext(CarritoContext); 
+  const { carrito, agregarProducto } = useContext(CartContext); 
   const [mostrarAviso, setMostrarAviso] = useState(false);
   const [mensajeAviso, setMensajeAviso] = useState(""); 
   const [bgAviso, setBgAviso] = useState("success");  

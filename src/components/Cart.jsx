@@ -4,11 +4,11 @@ import { CartContext } from "./CartContext";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../styles/Carrito.module.css";
+import styles from "../styles/Cart.module.css";
 
 const aDosDecimales = (n) => `$${Number(n || 0).toFixed(2)}`;
 
-function Carrito() {
+export default function Cart() {
   const {
     carrito,
     cambiarCantidad,
@@ -17,7 +17,7 @@ function Carrito() {
     totalPrecio,
   } = useContext(CartContext);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   function aumentar(id) {
     const item = carrito.find(function (i) { return i.id === id; });
@@ -123,7 +123,7 @@ function Carrito() {
 
       <div className="mt-3 d-flex gap-2">
         <Link to="/" className="btn btn-secondary">Seguir comprando</Link>
-        
+
         <Button
           variant="success"
           onClick={function () { navigate("/checkout"); }}
@@ -134,5 +134,3 @@ function Carrito() {
     </div>
   );
 }
-
-export default Carrito;

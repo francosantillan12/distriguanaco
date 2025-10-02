@@ -33,7 +33,7 @@ export default function ItemDetail({
               <div className="mt-auto d-flex gap-2 align-items-center">
                 {agregado ? (
                   <>
-                    <Button as={Link} to="/carrito" variant="warning">
+                    <Button as={Link} to="/cart" variant="warning">
                       Ir al carrito
                     </Button>
                     <Button as={Link} to="/" variant="outline-secondary">

@@ -43,7 +43,6 @@ function FinalizarCompra() {
 
     createOrder(order)
       .then(function (orderId) {
-        // ✅ Toast PERSISTENTE con ID y acciones
         toast.custom(
           function (t) {
             return (
@@ -83,14 +82,12 @@ function FinalizarCompra() {
               </div>
             );
           },
-          { duration: Infinity, position: "top-center" } // 👈 NO se cierra solo
+          { duration: Infinity, position: "top-center" } 
         );
 
-        // ✅ Vaciar carrito y limpiar form
         vaciarCarrito();
         form.reset();
 
-        // ✅ Volver al inicio (el toast persiste porque Toaster es global)
         setTimeout(function () {
           navigate("/");
         }, 500);

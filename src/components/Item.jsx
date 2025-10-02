@@ -29,7 +29,7 @@ export default function Item({ item }) {
 
     if (yaEnCarrito) {
       setMensajeAviso("⚠️ El producto ya está en el carrito");
-      setBgAviso("danger"); // rojo
+      setBgAviso("danger"); 
       setMostrarAviso(true);
       return;
     }

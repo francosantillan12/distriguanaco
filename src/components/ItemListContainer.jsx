@@ -1,11 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
 import { getItems, getItemsByCategory } from "../firebase/db.js";
 import withLoading from "./hoc/withLoading";
-
-
 
 
 const ItemListWithLoading = withLoading(ItemList);
